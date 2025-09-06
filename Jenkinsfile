@@ -1,9 +1,13 @@
 pipeline {
 	agent any
+	triggers {
+		githubPush()
+	}
 	stages {
 		stage("Checkout") {
 			steps {
-				checkout scm
+				git branch: "master",
+				    url: "https://github.com/Ashutosh1520/simple-python-app.git"
 			}
 		}
 		stage("Build") {
