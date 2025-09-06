@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage("Dependencies") {
 			steps {
-				sh 'pip install pytest'
+				sh 'sudo pip install pytest'
 			}
 		}
 		stage("Checkout") {
