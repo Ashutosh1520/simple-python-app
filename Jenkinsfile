@@ -20,13 +20,17 @@ pipeline {
 		}
 		stage("Test") {
 			steps {
-				sh 'py.test --junit-xml test-reports/results.xml sources/test_calc.py'
+				sh 'pytest --junit-xml test-reports/results.xml sources/test_calc.py'
 			}
 			post {
 				always {
 					junit 'test-reports/results.xml'
 				}
+<<<<<<< HEAD
 			}	
+=======
+			}
+>>>>>>> fb8ef501b0db0c5ca1507a3f6a96ad1dd2f64032
 		}
 	}
 }
