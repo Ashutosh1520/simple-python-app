@@ -2,18 +2,10 @@ pipeline {
 	agent {
 		docker { image "python:3.9" }
 	}
-	environment {
-		HOME = "/home/jenkins"
-	}
 	triggers {
 		githubPush()
 	}
 	stages {
-		stage("Dependencies") {
-			steps {
-				sh 'pip install --user pytest'
-			}
-		}
 		stage("Checkout") {
 			steps {
 				git branch: "master",
@@ -28,13 +20,18 @@ pipeline {
 		}
 		stage("Test") {
 			steps {
-				sh '$HOME/.local/bin/pytest --junit-xml test-reports/results.xml sources/test_calc.py'
-			}
+                sh '''
+                  python -m venv venv
+                  . venv/bin/activate
+                  pip install --upgrade pip
+                  pip install pytest
+                  pytest --junit-xml=test-reports/results.xml sources/test_calc.py
+                '''
+            }
 			post {
 				always {
 					junit 'test-reports/results.xml'
 				}
-	
 			}
 		}
 	}
