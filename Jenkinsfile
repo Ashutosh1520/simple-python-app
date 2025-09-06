@@ -26,11 +26,8 @@ pipeline {
 				always {
 					junit 'test-reports/results.xml'
 				}
-<<<<<<< HEAD
-			}	
-=======
+	
 			}
->>>>>>> fb8ef501b0db0c5ca1507a3f6a96ad1dd2f64032
 		}
 	}
 }
