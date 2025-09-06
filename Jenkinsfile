@@ -2,6 +2,9 @@ pipeline {
 	agent {
 		docker { image "python:3.9" }
 	}
+	environment {
+		HOME = "/home/jenkins"
+	}
 	triggers {
 		githubPush()
 	}
