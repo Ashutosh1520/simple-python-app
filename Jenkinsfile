@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage("Dependencies") {
 			steps {
-				sh 'sudo pip install pytest'
+				sh 'pip install --user pytest'
 			}
 		}
 		stage("Checkout") {
@@ -25,7 +25,7 @@ pipeline {
 		}
 		stage("Test") {
 			steps {
-				sh 'pytest --junit-xml test-reports/results.xml sources/test_calc.py'
+				sh '$HOME/.local/bin/pytest --junit-xml test-reports/results.xml sources/test_calc.py'
 			}
 			post {
 				always {
