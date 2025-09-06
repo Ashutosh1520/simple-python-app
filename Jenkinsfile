@@ -6,6 +6,11 @@ pipeline {
 		githubPush()
 	}
 	stages {
+		stage("Dependencies") {
+			steps {
+				sh 'pip install pytest'
+			}
+		}
 		stage("Checkout") {
 			steps {
 				git branch: "master",
