@@ -1,5 +1,7 @@
 pipeline {
-	agent any
+	agent {
+		docker { image "python:3.9" }
+	}
 	triggers {
 		githubPush()
 	}
@@ -23,7 +25,9 @@ pipeline {
 			post {
 				always {
 					junit 'test-reports/results.xml'
+				}
 			}	
+		}
 	}
 }
 				   
