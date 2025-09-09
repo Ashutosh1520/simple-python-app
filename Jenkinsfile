@@ -42,7 +42,7 @@ pipeline {
 		stage("deliver") {
 			steps {
 				sh '''
-				   ./venv/bin/pyinstaller --onefile sources/add22vals.py
+				   ./venv/bin/pyinstaller --onefile sources/add2vals.py
 				   '''
 			}
 			post { 
